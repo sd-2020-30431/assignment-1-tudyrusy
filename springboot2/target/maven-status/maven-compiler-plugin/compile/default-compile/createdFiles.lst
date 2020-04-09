@@ -1,0 +1,13 @@
+com\rustudor\Entity\Login.class
+com\rustudor\Entity\Payments.class
+com\rustudor\springboot2\Springboot2Application.class
+com\rustudor\Entity\User.class
+com\rustudor\Entity\Account.class
+com\rustudor\Entity\Message.class
+com\rustudor\Entity\CurrencyType.class
+com\rustudor\Entity\Appointment.class
+com\rustudor\repository\UsersRepository.class
+com\rustudor\Entity\Exchange.class
+com\rustudor\Entity\Role.class
+com\rustudor\Entity\Transfer.class
+com\rustudor\controller\UserController.class
