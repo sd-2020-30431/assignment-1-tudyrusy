@@ -6,13 +6,12 @@ import com.rustudor.Util.RequestValidator;
 import com.rustudor.Util.Session;
 import com.rustudor.Util.SessionManager;
 import com.rustudor.entity.Role;
-import com.rustudor.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.ArrayList;
 
 @RestController
 @RequestMapping(value = "/users")
@@ -41,6 +40,48 @@ public class UserController {
             default:
                 return new ResponseEntity<>("UNKNOWN ERROR", HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    @GetMapping(value = "/getItems")
+    public ResponseEntity<ArrayList<ItemDto1>> getAccounts(@RequestHeader("token") String token) {
+        Session session = SessionManager.getSessionMap().get(token);
+        if (session == null)
+            return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
+        else {
+            if (!RequestValidator.validate(session))
+                return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+            ArrayList<ItemDto1> itemDtos = userService.getItems(session);
+            return new ResponseEntity<>(itemDtos, HttpStatus.OK);
+        }
+    }
+
+    @PostMapping(value = "/addItem")
+    public ResponseEntity addItem(@RequestBody ItemDto itemDto, @RequestHeader("token") String token) {
+        System.out.println(itemDto);
+        Session session = SessionManager.getSessionMap().get(token);
+        //validation
+        //TODO
+
+        if(true) {
+            userService.addItem(itemDto, session);
+            return new ResponseEntity(HttpStatus.OK);
+        }
+        else
+            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @PostMapping(value = "/setConsumption")
+    public ResponseEntity setConsumption(@RequestBody ConsumptionDto consumptionDto, @RequestHeader("token") String token) {
+        Session session = SessionManager.getSessionMap().get(token);
+        //validation
+        //TODO
+
+        if(true) {
+            userService.setConsumption(consumptionDto, session);
+            return new ResponseEntity(HttpStatus.OK);
+        }
+        else
+            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @GetMapping(value = "/logout")

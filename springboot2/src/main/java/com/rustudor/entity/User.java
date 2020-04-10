@@ -56,4 +56,12 @@ public class User implements Serializable {
     public void setLogin(Login login) {
         this.login = login;
     }
+
+    public List<Item> getGroceryList() {
+        return GroceryList;
+    }
+
+    public void setGroceryList(List<Item> groceryList) {
+        GroceryList = groceryList;
+    }
 }

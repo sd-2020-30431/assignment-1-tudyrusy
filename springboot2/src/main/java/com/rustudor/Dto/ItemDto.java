@@ -1,37 +1,23 @@
-package com.rustudor.entity;
-
-
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+package com.rustudor.Dto;
 import java.sql.Timestamp;
 
-
-@Entity
-@Table
-public class Item {
-    @Id
-    @GeneratedValue
-    @Column(nullable = false, updatable = false)
+public class ItemDto {
     private int id;
     private String name;
     private int quantity;
     private int calories;
-    @NotNull
     private Timestamp purchaseDate;
-    @NotNull
     private Timestamp expirationDate;
     private Timestamp consumptionDate;
-    @ManyToOne
-    @NotNull
-    private User userFK;
 
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
+    public ItemDto(int id, String name, int quantity, int calories, Timestamp purchaseDate, Timestamp expirationDate, Timestamp consumptionDate) {
         this.id = id;
+        this.name = name;
+        this.quantity = quantity;
+        this.calories = calories;
+        this.purchaseDate = purchaseDate;
+        this.expirationDate = expirationDate;
+        this.consumptionDate = consumptionDate;
     }
 
     public String getName() {
@@ -74,10 +60,6 @@ public class Item {
         this.expirationDate = expirationDate;
     }
 
-    public User getUserFK() {
-        return userFK;
-    }
-
     public Timestamp getConsumptionDate() {
         return consumptionDate;
     }
@@ -86,15 +68,10 @@ public class Item {
         this.consumptionDate = consumptionDate;
     }
 
-    public void setUserFK(User userFK) {
-        this.userFK = userFK;
-    }
-
     @Override
     public String toString() {
-        return "Item{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
+        return "ItemDto{" +
+                "name='" + name + '\'' +
                 ", quantity=" + quantity +
                 ", calories=" + calories +
                 ", purchaseDate=" + purchaseDate +

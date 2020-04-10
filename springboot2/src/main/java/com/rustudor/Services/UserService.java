@@ -73,4 +73,42 @@ public class UserService {
     public void logout(String token) {
         SessionManager.getSessionMap().remove(token);
     }
+
+    public void addItem(ItemDto itemDto,Session session) {
+        Item i = new Item();
+        User user = usersRepository.findByUsername(session.getUsername());
+
+        i.setName(itemDto.getName());
+        i.setCalories(itemDto.getCalories());
+        i.setExpirationDate(itemDto.getExpirationDate());
+        i.setPurchaseDate(itemDto.getPurchaseDate());
+        i.setQuantity(itemDto.getQuantity());
+        i.setUserFK(user);
+
+        user.getGroceryList().add(i);
+        itemRepository.save(i);
+    }
+
+    public ArrayList<ItemDto1> getItems(Session session) {
+        ArrayList<ItemDto1> itemDtos = new ArrayList<>();
+
+        User user = usersRepository.findByUsername(session.getUsername());
+        for (Item a : user.getGroceryList()) {
+            if (a.getConsumptionDate()==null)
+                itemDtos.add(new ItemDto1(a.getId(),a.getName(),a.getQuantity(),a.getCalories(),a.getPurchaseDate(),
+                        a.getExpirationDate(),"N/As"));
+            else
+            itemDtos.add(new ItemDto1(a.getId(),a.getName(),a.getQuantity(),a.getCalories(),a.getPurchaseDate(),
+                    a.getExpirationDate(),a.getConsumptionDate().toString()));
+        }
+        return itemDtos;
+    }
+
+    public void setConsumption(ConsumptionDto consumptionDto, Session session) {
+        User user = usersRepository.findByUsername(session.getUsername());
+        Item i = itemRepository.findByNameAndUserFK(consumptionDto.getName(), user);
+        System.out.println(i.toString());
+        i.setConsumptionDate(consumptionDto.getConsumptionDate());
+        itemRepository.save(i);
+    }
 }

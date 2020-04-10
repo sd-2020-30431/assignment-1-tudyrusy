@@ -1,30 +1,25 @@
-package com.rustudor.entity;
+package com.rustudor.Dto;
 
-
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
 
-
-@Entity
-@Table
-public class Item {
-    @Id
-    @GeneratedValue
-    @Column(nullable = false, updatable = false)
+public class ItemDto1 {
     private int id;
     private String name;
     private int quantity;
     private int calories;
-    @NotNull
     private Timestamp purchaseDate;
-    @NotNull
     private Timestamp expirationDate;
-    private Timestamp consumptionDate;
-    @ManyToOne
-    @NotNull
-    private User userFK;
+    private String consumptionDate;
 
+    public ItemDto1(int id, String name, int quantity, int calories, Timestamp purchaseDate, Timestamp expirationDate, String consumptionDate) {
+        this.id = id;
+        this.name = name;
+        this.quantity = quantity;
+        this.calories = calories;
+        this.purchaseDate = purchaseDate;
+        this.expirationDate = expirationDate;
+        this.consumptionDate = consumptionDate;
+    }
 
     public int getId() {
         return id;
@@ -74,32 +69,11 @@ public class Item {
         this.expirationDate = expirationDate;
     }
 
-    public User getUserFK() {
-        return userFK;
-    }
-
-    public Timestamp getConsumptionDate() {
+    public String getConsumptionDate() {
         return consumptionDate;
     }
 
-    public void setConsumptionDate(Timestamp consumptionDate) {
+    public void setConsumptionDate(String consumptionDate) {
         this.consumptionDate = consumptionDate;
-    }
-
-    public void setUserFK(User userFK) {
-        this.userFK = userFK;
-    }
-
-    @Override
-    public String toString() {
-        return "Item{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", quantity=" + quantity +
-                ", calories=" + calories +
-                ", purchaseDate=" + purchaseDate +
-                ", expirationDate=" + expirationDate +
-                ", consumptionDate=" + consumptionDate +
-                '}';
     }
 }
