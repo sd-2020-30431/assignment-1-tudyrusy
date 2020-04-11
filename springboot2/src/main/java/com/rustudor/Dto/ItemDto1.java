@@ -10,8 +10,9 @@ public class ItemDto1 {
     private Timestamp purchaseDate;
     private Timestamp expirationDate;
     private String consumptionDate;
+    private int perDay;
 
-    public ItemDto1(int id, String name, int quantity, int calories, Timestamp purchaseDate, Timestamp expirationDate, String consumptionDate) {
+    public ItemDto1(int id, String name, int quantity, int calories, Timestamp purchaseDate, Timestamp expirationDate, String consumptionDate, int perDay) {
         this.id = id;
         this.name = name;
         this.quantity = quantity;
@@ -19,6 +20,7 @@ public class ItemDto1 {
         this.purchaseDate = purchaseDate;
         this.expirationDate = expirationDate;
         this.consumptionDate = consumptionDate;
+        this.perDay = perDay;
     }
 
     public int getId() {
@@ -67,6 +69,14 @@ public class ItemDto1 {
 
     public void setExpirationDate(Timestamp expirationDate) {
         this.expirationDate = expirationDate;
+    }
+
+    public int getPerDay() {
+        return perDay;
+    }
+
+    public void setPerDay(int perDay) {
+        this.perDay = perDay;
     }
 
     public String getConsumptionDate() {

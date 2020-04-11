@@ -3,10 +3,12 @@ package com.rustudor.Dto;
 public class UserDto {
     private String name;
     private String email;
+    private int goal;
 
-    public UserDto(String name, String email) {
+    public UserDto(String name, String email, int goal) {
         this.name = name;
         this.email = email;
+        this.goal = goal;
     }
 
     public String getName() {
@@ -23,5 +25,13 @@ public class UserDto {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public int getGoal() {
+        return goal;
+    }
+
+    public void setGoal(int goal) {
+        this.goal = goal;
     }
 }

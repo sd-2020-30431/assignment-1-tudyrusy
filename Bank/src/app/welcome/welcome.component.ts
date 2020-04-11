@@ -18,11 +18,17 @@ export class WelcomeComponent implements OnInit {
   userModel: UserModel = new UserModel();
   admin = false;
   item;
+  waste;
   itemModel: ItemModel = new ItemModel();
   itemsModel: ItemModel1[];
   cdModel: CdModel = new CdModel();
+  goal: number;
+  s = 0;
+  calWasted = 0;
+
   constructor(private http: HttpClient, private router: Router) {
   }
+
   add() {
     const httpOptions = {
       headers: new HttpHeaders({
@@ -39,8 +45,11 @@ export class WelcomeComponent implements OnInit {
         alert('Error');
       }
     );
-    setTimeout(() => {  this.getItems(); }, 2000);
+    setTimeout(() => {
+      this.getItems();
+    }, 2000);
   }
+
   viewProfile() {
     const httpOptions = {
       headers: new HttpHeaders({
@@ -55,7 +64,11 @@ export class WelcomeComponent implements OnInit {
       },
       error => console.log(error)
     );
+    setTimeout(() => {
+      this.getWaste();
+    }, 1500);
   }
+
   getItems() {
     const httpOptions = {
       headers: new HttpHeaders({
@@ -69,7 +82,11 @@ export class WelcomeComponent implements OnInit {
         console.table(this.itemsModel);
       },
       error => console.log(error));
+    setTimeout(() => {
+      this.getWaste();
+    }, 1500);
   }
+
   logout() {
     const httpOptions = {
       headers: new HttpHeaders({
@@ -114,6 +131,39 @@ export class WelcomeComponent implements OnInit {
         console.log(result);
       },
       error => console.log(error));
-    setTimeout(() => {  this.getItems(); }, 2000);
+    setTimeout(() => {
+      this.getItems();
+    }, 2000);
+  }
+
+  setGoal() {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        token: this.actualToken
+      })
+    };
+    this.http.post('http://localhost:8080/users/setGoal', this.goal,
+      httpOptions).subscribe(
+      result => {
+        console.log(result);
+      },
+      error => console.log(error));
+    setTimeout(() => {
+      this.viewProfile();
+    }, 1500);
+    setTimeout(() => {
+      this.getWaste();
+    }, 1500);
+  }
+
+  getWaste() {
+    this.s = 0;
+    for (const i of this.itemsModel) {
+      if (i.consumptionDate === 'N/As') {
+        this.s += i.perDay;
+      }
+    }
+    this.calWasted = this.s - this.userModel.goal;
   }
 }

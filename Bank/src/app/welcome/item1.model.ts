@@ -6,4 +6,5 @@ export class ItemModel1 {
   purchaseDate: Date;
   expirationDate: Date;
   consumptionDate: string;
+  perDay: number;
 }

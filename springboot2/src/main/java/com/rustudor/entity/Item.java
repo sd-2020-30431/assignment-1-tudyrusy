@@ -90,6 +90,9 @@ public class Item {
         this.userFK = userFK;
     }
 
+    public int days(){
+        return ((int) ((this.getExpirationDate().getTime() - this.getPurchaseDate().getTime())/86400000));
+    }
     @Override
     public String toString() {
         return "Item{" +
@@ -101,5 +104,9 @@ public class Item {
                 ", expirationDate=" + expirationDate +
                 ", consumptionDate=" + consumptionDate +
                 '}';
+    }
+
+    public int getPerDay() {
+        return this.getQuantity()*this.getCalories()/this.days();
     }
 }

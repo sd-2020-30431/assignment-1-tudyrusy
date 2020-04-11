@@ -16,6 +16,7 @@ public class User implements Serializable {
     private int id;
     //@NotNull
     private String name;
+    private int goal;
     private String email;
     //@NotNull
     @OneToMany(mappedBy = "userFK")
@@ -48,6 +49,13 @@ public class User implements Serializable {
         this.email = email;
     }
 
+    public int getGoal() {
+        return goal;
+    }
+
+    public void setGoal(int goal) {
+        this.goal = goal;
+    }
 
     public Login getLogin() {
         return login;

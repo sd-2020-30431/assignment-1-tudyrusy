@@ -1,8 +1,15 @@
-<link href='https://fonts.googleapis.com/css?family=Open+Sans:700,600' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:700,600' rel='stylesheet' type='text/css'
+      xmlns="http://www.w3.org/1999/xhtml">
 <div class="box" style="width: 95%">
   <button class="btn3" mat-raised-button color="primary" style="float: right;" (click)="logout()">Logout</button>
-  <h1>Welcome {{userModel.name}}</h1>
-  <h1>Email: {{userModel.email}}</h1>
+  <h1>Welcome {{userModel.name}} Email: {{userModel.email}}</h1>
+  <h1 *ngIf="userModel.goal!==0">Goal= {{userModel.goal}} S={{s}}</h1>
+  <h1 *ngIf="userModel.goal===0">Goal= not set yet S={{s}}</h1>
+  <input [(ngModel)]="goal" type="number" name="goal" placeholder="goal" class="text-input" />
+  <button class="btn3" mat-raised-button color="primary" (click)="setGoal()">Set Goal</button>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h1 *ngIf="calWasted>0">YOU WASTE {{calWasted}} calories per day!!!</h1>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <a *ngIf="calWasted>0" style="font-size:1.5em;color:#525252;"href="https://www.trusselltrust.org/get-involved/ways-to-give/donate-food/">Donate here</a>
 </div>
 
 
@@ -33,6 +40,7 @@
         <th>Purchase Date</th>
         <th>Expiration Date</th>
         <th>Consumption Date</th>
+        <th>Cal/Day</th>
       </tr>
     </thead>
     <tbody>
@@ -43,6 +51,7 @@
       <td>{{item.purchaseDate.toString().slice(0,item.purchaseDate.toString().lastIndexOf('T'))}}</td>
       <td>{{item.expirationDate.toString().slice(0,item.expirationDate.toString().lastIndexOf('T'))}}</td>
       <td>{{item.consumptionDate.toString().substr(0,10)}}</td>
+      <td>{{item.perDay}}</td>
     </tr>
     </tbody>
   </table>

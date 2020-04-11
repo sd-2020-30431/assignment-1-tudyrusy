@@ -70,6 +70,23 @@ public class UserController {
             return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
+    @PostMapping(value = "/setGoal")
+    public ResponseEntity setGoal(@RequestBody String goal, @RequestHeader("token") String token) {
+        System.out.println(goal);
+        Session session = SessionManager.getSessionMap().get(token);
+        //validation
+        //TODO
+
+        if(true) {
+            userService.setGoal(Integer.parseInt(goal), session);
+            return new ResponseEntity(HttpStatus.OK);
+        }
+        else
+            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+
+
     @PostMapping(value = "/setConsumption")
     public ResponseEntity setConsumption(@RequestBody ConsumptionDto consumptionDto, @RequestHeader("token") String token) {
         Session session = SessionManager.getSessionMap().get(token);
@@ -83,6 +100,16 @@ public class UserController {
         else
             return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
     }
+
+    /*@GetMapping(value = "/getWaste")
+    public ResponseEntity<String> getWaste(@RequestHeader("token") String token) {
+        if (!SessionManager.getSessionMap().containsKey(token))
+            return new ResponseEntity<>("ERROR", HttpStatus.INTERNAL_SERVER_ERROR);
+        else {
+            userService.getWaste(token);
+            return new ResponseEntity<>("SUCCESS", HttpStatus.OK);
+        }
+    }*/
 
     @GetMapping(value = "/logout")
     public ResponseEntity<String> logout(@RequestHeader("token") String token) {

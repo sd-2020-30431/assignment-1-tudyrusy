@@ -67,7 +67,7 @@ public class UserService {
 
     public UserDto findByUsername(String username) {
         User u = usersRepository.findByUsername(username);
-        return new UserDto(u.getName(),u.getEmail());
+        return new UserDto(u.getName(),u.getEmail(),u.getGoal());
     }
 
     public void logout(String token) {
@@ -97,10 +97,10 @@ public class UserService {
         for (Item a : user.getGroceryList()) {
             if (a.getConsumptionDate()==null)
                 itemDtos.add(new ItemDto1(a.getId(),a.getName(),a.getQuantity(),a.getCalories(),a.getPurchaseDate(),
-                        a.getExpirationDate(),"N/As"));
+                        a.getExpirationDate(),"N/As",a.getPerDay()));
             else
             itemDtos.add(new ItemDto1(a.getId(),a.getName(),a.getQuantity(),a.getCalories(),a.getPurchaseDate(),
-                    a.getExpirationDate(),a.getConsumptionDate().toString()));
+                    a.getExpirationDate(),a.getConsumptionDate().toString(),a.getPerDay()));
         }
         return itemDtos;
     }
@@ -109,8 +109,14 @@ public class UserService {
     public void setConsumption(ConsumptionDto consumptionDto, Session session) {
         User user = usersRepository.findByUsername(session.getUsername());
         Item i = itemRepository.findByNameAndUserFK(consumptionDto.getName(), user);
-        System.out.println(i.toString());
+        //System.out.println(i.toString());
+        //System.out.println(i.days());
         i.setConsumptionDate(consumptionDto.getConsumptionDate());
         //itemRepository.save(i);
+    }
+    @Transactional
+    public void setGoal(int goal, Session session) {
+        User user = usersRepository.findByUsername(session.getUsername());
+        user.setGoal(goal);
     }
 }
