@@ -1,21 +1,19 @@
-package com.rustudor.Services;
+package com.rustudor.business.Services;
 
 import com.rustudor.Dto.*;
 import com.rustudor.Util.Session;
 import com.rustudor.Util.SessionManager;
 import com.rustudor.entity.*;
-import com.rustudor.repository.ItemRepository;
-import com.rustudor.repository.LoginRepository;
-import com.rustudor.repository.UsersRepository;
+
+import com.rustudor.persistence.repository.ItemRepository;
+import com.rustudor.persistence.repository.LoginRepository;
+import com.rustudor.persistence.repository.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.sql.Date;
-import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.ArrayList;
-import java.util.List;
 
 
 @Service

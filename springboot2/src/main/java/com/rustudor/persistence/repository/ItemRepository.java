@@ -1,4 +1,4 @@
-package com.rustudor.repository;
+package com.rustudor.persistence.repository;
 
 import com.rustudor.entity.Item;
 import com.rustudor.entity.User;

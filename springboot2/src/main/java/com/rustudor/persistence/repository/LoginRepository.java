@@ -1,4 +1,4 @@
-package com.rustudor.repository;
+package com.rustudor.persistence.repository;
 
 import com.rustudor.entity.Login;
 import org.springframework.data.jpa.repository.JpaRepository;

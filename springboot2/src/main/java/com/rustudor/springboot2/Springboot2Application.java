@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-@EnableJpaRepositories(basePackages = "com.rustudor.repository")
+@EnableJpaRepositories(basePackages = "com.rustudor.persistence.repository")
 @EntityScan("com.rustudor.entity")
 @SpringBootApplication(scanBasePackages = "com.rustudor")
 public class Springboot2Application {

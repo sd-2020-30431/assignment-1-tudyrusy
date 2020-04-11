@@ -1,12 +1,8 @@
 package com.rustudor.Util;
 
-import com.rustudor.Dto.TokenDto;
-import org.springframework.stereotype.Component;
-
 import java.security.SecureRandom;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
 
 public class SessionManager {

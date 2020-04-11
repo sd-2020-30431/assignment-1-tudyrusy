@@ -1,12 +1,14 @@
-package com.rustudor.controller;
+package com.rustudor.presentation.controller;
+
 
 import com.rustudor.Dto.*;
-import com.rustudor.Services.UserService;
+import com.rustudor.business.Services.UserService;
 import com.rustudor.Util.DataValidator;
 import com.rustudor.Util.RequestValidator;
 import com.rustudor.Util.Session;
 import com.rustudor.Util.SessionManager;
 import com.rustudor.entity.Role;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

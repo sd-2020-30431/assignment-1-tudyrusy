@@ -3,12 +3,8 @@ package com.rustudor.Util;
 import com.rustudor.Dto.ConsumptionDto;
 import com.rustudor.Dto.FullUserDto;
 import com.rustudor.Dto.ItemDto;
-import com.rustudor.entity.Role;
 
-import javax.xml.validation.Validator;
 import java.sql.Timestamp;
-import java.time.Instant;
-import java.time.temporal.ChronoUnit;
 import java.util.regex.Pattern;
 
 public class DataValidator {
