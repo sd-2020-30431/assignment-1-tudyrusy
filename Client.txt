@@ -2,3 +2,6 @@ https://drive.google.com/open?id=1RO7SI_KTvuIye0OfEaGK6HvZq49GXQej
 
 Nu am reusit sa uploadez proiectul de angular pe github.
 Am cautat si pe net si tot nu am reusit asa ca l-am uploadat la mine pe drive si am pus aici linkul.
+
+Am reusit pana la urma.
+Bank e clientul
