@@ -1,0 +1,276 @@
+@startuml
+
+title __SPRINGBOOT2's Class Diagram__\n
+
+  namespace  {
+    class MavenWrapperDownloader {
+    }
+  }
+  
+
+  namespace  {
+    namespace om.rustudor.Dto {
+      class com.rustudor.Dto.ConsumptionDto {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace om.rustudor.Dto {
+      class com.rustudor.Dto.FullUserDto {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace om.rustudor.Dto {
+      class com.rustudor.Dto.ItemDto {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace om.rustudor.Dto {
+      class com.rustudor.Dto.ItemDto1 {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace om.rustudor.Dto {
+      class com.rustudor.Dto.LoginDto {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace om.rustudor.Dto {
+      class com.rustudor.Dto.StringObj {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace om.rustudor.Dto {
+      class com.rustudor.Dto.TokenDto {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace om.rustudor.Dto {
+      class com.rustudor.Dto.UserDto {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace om.rustudor.Util {
+      class com.rustudor.Util.DataValidator {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace om.rustudor.Util {
+      class com.rustudor.Util.RequestValidator {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace om.rustudor.Util {
+      class com.rustudor.Util.Session {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace om.rustudor.Util {
+      class com.rustudor.Util.SessionManager {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace om.rustudor.business.Services {
+      class com.rustudor.business.Services.UserService {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace om.rustudor.business.factory {
+      abstract class com.rustudor.business.factory.AbstractFactory {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace om.rustudor.business.factory {
+      class com.rustudor.business.factory.FactoryProducer {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace om.rustudor.business.factory {
+      class com.rustudor.business.factory.MonthlyReport {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace om.rustudor.business.factory {
+      class com.rustudor.business.factory.MonthlyReportFactory {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace om.rustudor.business.factory {
+      interface com.rustudor.business.factory.Report {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace om.rustudor.business.factory {
+      class com.rustudor.business.factory.WeeklyReport {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace om.rustudor.business.factory {
+      class com.rustudor.business.factory.WeeklyReportFactory {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace om.rustudor.config {
+      class com.rustudor.config.WebConfig {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace om.rustudor.entity {
+      class com.rustudor.entity.Item {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace om.rustudor.entity {
+      class com.rustudor.entity.Login {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace om.rustudor.entity {
+      enum Role {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace om.rustudor.entity {
+      class com.rustudor.entity.User {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace om.rustudor.persistence.repository {
+      interface com.rustudor.persistence.repository.ItemRepository {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace om.rustudor.persistence.repository {
+      interface com.rustudor.persistence.repository.LoginRepository {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace om.rustudor.persistence.repository {
+      interface com.rustudor.persistence.repository.UsersRepository {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace om.rustudor.presentation.controller {
+      class com.rustudor.presentation.controller.UserController {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace om.rustudor.springboot2 {
+      class com.rustudor.springboot2.Springboot2Application {
+      }
+    }
+  }
+  
+
+  com.rustudor.Util.Session o-- com.rustudor.entity.Role : role
+  com.rustudor.business.Services.UserService o-- com.rustudor.persistence.repository.ItemRepository : itemRepository
+  com.rustudor.business.Services.UserService o-- com.rustudor.persistence.repository.LoginRepository : loginRepository
+  com.rustudor.business.Services.UserService o-- com.rustudor.persistence.repository.UsersRepository : usersRepository
+  com.rustudor.business.factory.MonthlyReport .up.|> com.rustudor.business.factory.Report
+  com.rustudor.business.factory.MonthlyReport o-- com.rustudor.persistence.repository.UsersRepository : usersRepository
+  com.rustudor.business.factory.MonthlyReportFactory -up-|> com.rustudor.business.factory.AbstractFactory
+  com.rustudor.business.factory.WeeklyReport .up.|> com.rustudor.business.factory.Report
+  com.rustudor.business.factory.WeeklyReportFactory -up-|> com.rustudor.business.factory.AbstractFactory
+  com.rustudor.entity.Item o-- com.rustudor.entity.User : userFK
+  com.rustudor.entity.Login .up.|> java.io.Serializable
+  com.rustudor.entity.Login o-- com.rustudor.entity.Role : role
+  com.rustudor.entity.Login o-- com.rustudor.entity.User : userFK
+  com.rustudor.entity.User .up.|> java.io.Serializable
+  com.rustudor.entity.User o-- com.rustudor.entity.Login : login
+  com.rustudor.presentation.controller.UserController o-- com.rustudor.business.Services.UserService : userService
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml
