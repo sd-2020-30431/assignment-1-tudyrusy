@@ -2,6 +2,7 @@ package com.rustudor.controller;
 
 import com.rustudor.Dto.*;
 import com.rustudor.Services.UserService;
+import com.rustudor.Util.DataValidator;
 import com.rustudor.Util.RequestValidator;
 import com.rustudor.Util.Session;
 import com.rustudor.Util.SessionManager;
@@ -32,6 +33,10 @@ public class UserController {
     @PostMapping(value = "/register")
     public ResponseEntity<String> register(@RequestBody FullUserDto fullUserDto) {
         System.out.println(fullUserDto);
+        if (!DataValidator.validateUser(fullUserDto)) {
+            System.out.println("user input error");
+            return new ResponseEntity<>("INVALID DATA", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
         switch (userService.register(fullUserDto)) {
             case 0:
                 return new ResponseEntity<>("SUCCESS : USER REGISTERED", HttpStatus.OK);
@@ -57,59 +62,44 @@ public class UserController {
 
     @PostMapping(value = "/addItem")
     public ResponseEntity addItem(@RequestBody ItemDto itemDto, @RequestHeader("token") String token) {
-        System.out.println(itemDto);
-        Session session = SessionManager.getSessionMap().get(token);
         //validation
-        //TODO
-
-        if(true) {
+        if(DataValidator.validateItem(itemDto)) {
+            Session session = SessionManager.getSessionMap().get(token);
             userService.addItem(itemDto, session);
             return new ResponseEntity(HttpStatus.OK);
         }
-        else
+        else {
+            System.out.println("item input error");
             return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @PostMapping(value = "/setGoal")
     public ResponseEntity setGoal(@RequestBody String goal, @RequestHeader("token") String token) {
-        System.out.println(goal);
-        Session session = SessionManager.getSessionMap().get(token);
         //validation
-        //TODO
-
-        if(true) {
+        if(DataValidator.validateGoal(goal)) {
+            Session session = SessionManager.getSessionMap().get(token);
             userService.setGoal(Integer.parseInt(goal), session);
             return new ResponseEntity(HttpStatus.OK);
         }
-        else
+        else {
+            System.out.println("goal input error");
             return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
-
-
 
     @PostMapping(value = "/setConsumption")
     public ResponseEntity setConsumption(@RequestBody ConsumptionDto consumptionDto, @RequestHeader("token") String token) {
-        Session session = SessionManager.getSessionMap().get(token);
-        //validation
-        //TODO
-
-        if(true) {
+        if(DataValidator.validateConsumptionDto(consumptionDto)) {
+            Session session = SessionManager.getSessionMap().get(token);
             userService.setConsumption(consumptionDto, session);
             return new ResponseEntity(HttpStatus.OK);
         }
-        else
-            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
-    }
-
-    /*@GetMapping(value = "/getWaste")
-    public ResponseEntity<String> getWaste(@RequestHeader("token") String token) {
-        if (!SessionManager.getSessionMap().containsKey(token))
-            return new ResponseEntity<>("ERROR", HttpStatus.INTERNAL_SERVER_ERROR);
         else {
-            userService.getWaste(token);
-            return new ResponseEntity<>("SUCCESS", HttpStatus.OK);
+            System.out.println("consumptionDto input error");
+            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-    }*/
+    }
 
     @GetMapping(value = "/logout")
     public ResponseEntity<String> logout(@RequestHeader("token") String token) {

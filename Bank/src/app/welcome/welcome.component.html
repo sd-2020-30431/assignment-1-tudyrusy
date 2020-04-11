@@ -3,8 +3,8 @@
 <div class="box" style="width: 95%">
   <button class="btn3" mat-raised-button color="primary" style="float: right;" (click)="logout()">Logout</button>
   <h1>Welcome {{userModel.name}} Email: {{userModel.email}}</h1>
-  <h1 *ngIf="userModel.goal!==0">Goal= {{userModel.goal}} S={{s}}</h1>
-  <h1 *ngIf="userModel.goal===0">Goal= not set yet S={{s}}</h1>
+  <h1 *ngIf="userModel.goal!==0">Goal= {{userModel.goal}} Ideal Burndown Rate={{s}}</h1>
+  <h1 *ngIf="userModel.goal===0">Goal= not set yet Ideal Burndown Rate={{s}}</h1>
   <input [(ngModel)]="goal" type="number" name="goal" placeholder="goal" class="text-input" />
   <button class="btn3" mat-raised-button color="primary" (click)="setGoal()">Set Goal</button>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h1 *ngIf="calWasted>0">YOU WASTE {{calWasted}} calories per day!!!</h1>

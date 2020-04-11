@@ -130,7 +130,11 @@ export class WelcomeComponent implements OnInit {
       result => {
         console.log(result);
       },
-      error => console.log(error));
+      error => {
+        console.log(error);
+        alert('Error');
+      }
+    );
     setTimeout(() => {
       this.getItems();
     }, 2000);
@@ -148,7 +152,11 @@ export class WelcomeComponent implements OnInit {
       result => {
         console.log(result);
       },
-      error => console.log(error));
+      error => {
+        console.log(error);
+        alert('Error');
+      }
+    );
     setTimeout(() => {
       this.viewProfile();
     }, 1500);
