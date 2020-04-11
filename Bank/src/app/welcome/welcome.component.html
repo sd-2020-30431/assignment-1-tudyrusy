@@ -1,0 +1,54 @@
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:700,600' rel='stylesheet' type='text/css'>
+<div class="box" style="width: 95%">
+  <button class="btn3" mat-raised-button color="primary" style="float: right;" (click)="logout()">Logout</button>
+  <h1>Welcome {{userModel.name}}</h1>
+  <h1>Email: {{userModel.email}}</h1>
+</div>
+
+
+<div class="box1" style="margin: 10px; float: left">
+  <h1>Add Grocery Form</h1><br>
+
+  <input [(ngModel)]="itemModel.name" type="text" name="name" placeholder="name" class="text-input" /><br>
+  <input [(ngModel)]="itemModel.quantity" type="number" name="quantity" placeholder="quantity" class="text-input" /><br>
+  <input [(ngModel)]="itemModel.calories" type="number" name="calories" placeholder="calories" class="text-input" /><br>
+  <input [(ngModel)]="itemModel.purchaseDate" type="date" name="purchaseDate" placeholder="purchaseDate" class="text-input" /><br>
+  <input [(ngModel)]="itemModel.expirationDate" type="date" name="expirationDate" placeholder="expirationDate" class="text-input" /><br>
+  <button class="btn3" mat-raised-button color="primary" (click)="add()">Add Grocery</button><br>
+  <select id="item">
+    <option *ngFor="let a of itemsModel">{{a.name}}</option>
+  </select><br>
+  <input [(ngModel)]="cdModel.consumptionDate" type="date" name="consumptionDate" placeholder="consumptionDate" class="text-input" /><br>
+  <button class="btn3" mat-raised-button color="primary" (click)="cd()">Set Consumption Date</button>
+
+</div>
+<div class="box2" style="margin: 10px; float: left">
+  <h1>Groceries</h1><br>
+  <table width="900">
+    <thead>
+      <tr>
+        <th style="float: left">Name</th>
+        <th>Quantity</th>
+        <th>Calories</th>
+        <th>Purchase Date</th>
+        <th>Expiration Date</th>
+        <th>Consumption Date</th>
+      </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of itemsModel" >
+      <td>{{item.name}}</td>
+      <td>{{item.quantity}}</td>
+      <td>{{item.calories}}</td>
+      <td>{{item.purchaseDate.toString().slice(0,item.purchaseDate.toString().lastIndexOf('T'))}}</td>
+      <td>{{item.expirationDate.toString().slice(0,item.expirationDate.toString().lastIndexOf('T'))}}</td>
+      <td>{{item.consumptionDate.toString().substr(0,10)}}</td>
+    </tr>
+    </tbody>
+  </table>
+
+</div>
+
+
+
+

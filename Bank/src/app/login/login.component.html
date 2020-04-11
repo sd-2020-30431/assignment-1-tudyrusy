@@ -1,0 +1,25 @@
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:700,600' rel='stylesheet' type='text/css'>
+
+<form method="get" action="index.html">
+  <div class="box">
+    <h1>Login</h1>
+
+    <input [(ngModel)]="loginRequest.username" type="text" name="username" placeholder="username" class="text-input" />
+
+    <input [(ngModel)]="loginRequest.password" type="password" name="password" placeholder="password" class="text-input" />
+
+    <button class="btn3" mat-raised-button color="primary" (click)="do()">Login</button>
+    <button class="btn3" mat-raised-button color="primary" (click)="register()">Register</button>
+
+    <br>
+    <br>
+
+    <!--<a href="#"><div class="btn">Sign In</div></a>
+
+    <a href="#"><div id="btn2">Sign Up</div></a>-->
+
+  </div> <!-- End Box -->
+
+</form>
+
+

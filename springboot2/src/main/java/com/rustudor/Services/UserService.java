@@ -74,6 +74,7 @@ public class UserService {
         SessionManager.getSessionMap().remove(token);
     }
 
+    @Transactional
     public void addItem(ItemDto itemDto,Session session) {
         Item i = new Item();
         User user = usersRepository.findByUsername(session.getUsername());
@@ -104,11 +105,12 @@ public class UserService {
         return itemDtos;
     }
 
+    @Transactional
     public void setConsumption(ConsumptionDto consumptionDto, Session session) {
         User user = usersRepository.findByUsername(session.getUsername());
         Item i = itemRepository.findByNameAndUserFK(consumptionDto.getName(), user);
         System.out.println(i.toString());
         i.setConsumptionDate(consumptionDto.getConsumptionDate());
-        itemRepository.save(i);
+        //itemRepository.save(i);
     }
 }
