@@ -92,7 +92,7 @@ public class DataValidator {
 
 
     public static boolean validateConsumptionDto(ConsumptionDto consumptionDto) {
-        if (!DataValidator.isAlpha(consumptionDto.getName()))
+        if (!DataValidator.isName(consumptionDto.getName()))
             return false;
         return true;
     }

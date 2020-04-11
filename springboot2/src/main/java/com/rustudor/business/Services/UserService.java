@@ -3,6 +3,9 @@ package com.rustudor.business.Services;
 import com.rustudor.Dto.*;
 import com.rustudor.Util.Session;
 import com.rustudor.Util.SessionManager;
+import com.rustudor.business.factory.AbstractFactory;
+import com.rustudor.business.factory.FactoryProducer;
+import com.rustudor.business.factory.Report;
 import com.rustudor.entity.*;
 
 import com.rustudor.persistence.repository.ItemRepository;
@@ -116,5 +119,23 @@ public class UserService {
     public void setGoal(int goal, Session session) {
         User user = usersRepository.findByUsername(session.getUsername());
         user.setGoal(goal);
+    }
+
+    public StringObj getWeeklyReport(Session session) {
+        User user = usersRepository.findByUsername(session.getUsername());
+        StringObj stringObj = new StringObj();
+        AbstractFactory weeklyFactory = FactoryProducer.getFactory("WEEKLY");
+        Report report1 = weeklyFactory.getReport("WEEKLY");
+        stringObj.setMyString(report1.makeReport(user));
+        return stringObj;
+    }
+
+    public StringObj getMonthlyReport(Session session) {
+        User user = usersRepository.findByUsername(session.getUsername());
+        StringObj stringObj = new StringObj();
+        AbstractFactory monthlyFactory = FactoryProducer.getFactory("MONTHLY");
+        Report report1 = monthlyFactory.getReport("MONTHLY");
+        stringObj.setMyString(report1.makeReport(user));
+        return stringObj;
     }
 }

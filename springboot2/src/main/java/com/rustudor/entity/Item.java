@@ -25,7 +25,6 @@ public class Item {
     @NotNull
     private User userFK;
 
-
     public int getId() {
         return id;
     }

@@ -6,6 +6,7 @@ import {HttpHeaders} from '@angular/common/http';
 import {ItemModel} from './item.model';
 import {ItemModel1} from './item1.model';
 import {CdModel} from './cd.model';
+import {StringObj} from './stringObj.model';
 
 @Component({
   selector: 'app-welcome',
@@ -19,6 +20,7 @@ export class WelcomeComponent implements OnInit {
   admin = false;
   item;
   waste;
+  stringObj: StringObj = new StringObj();
   itemModel: ItemModel = new ItemModel();
   itemsModel: ItemModel1[];
   cdModel: CdModel = new CdModel();
@@ -173,5 +175,35 @@ export class WelcomeComponent implements OnInit {
       }
     }
     this.calWasted = this.s - this.userModel.goal;
+  }
+
+  getWReport() {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        token: window.localStorage.getItem('token')
+      })
+    };
+    this.http.get<StringObj>('http://localhost:8080/users/getWeeklyReport',
+      httpOptions).subscribe(result => {
+        this.stringObj = result;
+        console.table(this.stringObj);
+      },
+      error => console.log(error));
+  }
+
+  getMReport() {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        token: window.localStorage.getItem('token')
+      })
+    };
+    this.http.get<StringObj>('http://localhost:8080/users/getMonthlyReport',
+      httpOptions).subscribe(result => {
+        this.stringObj = result;
+        console.table(this.stringObj);
+      },
+      error => console.log(error));
   }
 }

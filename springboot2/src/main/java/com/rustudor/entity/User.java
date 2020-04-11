@@ -25,6 +25,9 @@ public class User implements Serializable {
     @NotNull
     private Login login;
 
+    public User() {
+    }
+
     public int getId() {
         return id;
     }

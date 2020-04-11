@@ -7,7 +7,9 @@
   <h1 *ngIf="userModel.goal===0">Goal= not set yet Ideal Burndown Rate={{s}}</h1>
   <input [(ngModel)]="goal" type="number" name="goal" placeholder="goal" class="text-input" />
   <button class="btn3" mat-raised-button color="primary" (click)="setGoal()">Set Goal</button>
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h1 *ngIf="calWasted>0">YOU WASTE {{calWasted}} calories per day!!!</h1>
+  <button class="btn3" mat-raised-button color="primary" (click)="getWReport()">Weekly Report</button>
+  <button class="btn3" mat-raised-button color="primary" (click)="getMReport()">Monthly Report</button>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h1 *ngIf="calWasted>0 && userModel.goal!==0">YOU WASTE {{calWasted}} calories per day!!!</h1>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <a *ngIf="calWasted>0" style="font-size:1.5em;color:#525252;"href="https://www.trusselltrust.org/get-involved/ways-to-give/donate-food/">Donate here</a>
 </div>
@@ -55,7 +57,9 @@
     </tr>
     </tbody>
   </table>
-
+  <div class="box2" style="margin: 10px;">
+    <pre>{{stringObj.myString}}</pre>
+  </div>
 </div>
 
 

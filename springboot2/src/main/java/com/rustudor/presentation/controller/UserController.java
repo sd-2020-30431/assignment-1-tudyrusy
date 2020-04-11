@@ -123,6 +123,30 @@ public class UserController {
             return new ResponseEntity<>(tokenDto, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
+    @GetMapping(value = "/getWeeklyReport")
+    public ResponseEntity<StringObj> getWeeklyReport(@RequestHeader("token") String token) {
+        Session session = SessionManager.getSessionMap().get(token);
+        if (session == null) {
+            return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
+        } else {
+            if (!RequestValidator.validate(session))
+                return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(userService.getWeeklyReport(session), HttpStatus.OK);
+        }
+    }
+
+    @GetMapping(value = "/getMonthlyReport")
+    public ResponseEntity<StringObj> getMonthlyReport(@RequestHeader("token") String token) {
+        Session session = SessionManager.getSessionMap().get(token);
+        if (session == null) {
+            return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
+        } else {
+            if (!RequestValidator.validate(session))
+                return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(userService.getMonthlyReport(session), HttpStatus.OK);
+        }
+    }
+
     @GetMapping(value = "/viewProfile")
     public ResponseEntity<UserDto> viewProfile(@RequestHeader("token") String token) {
         Session session = SessionManager.getSessionMap().get(token);
